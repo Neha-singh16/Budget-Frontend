@@ -27,25 +27,8 @@ export default function IntroPage() {
         </p>
 
         <div className="flex justify-center space-x-6">
-            <Link to={"/signup"}>
-          <button
-            className="font-semibold px-6 py-3 rounded-lg shadow-lg transition"
-            style={{
-              backgroundColor: "#567C8D", // Teal
-              color: "#F5EFEB", // Beige
-              boxShadow: "0 4px 6px rgba(0,0,0,0.3)",
-            }}
-            onClick={() => alert("Redirect to Sign Up")}
-            onMouseEnter={(e) =>
-              (e.currentTarget.style.backgroundColor = "#2F4156")
-            } // Navy on hover
-            onMouseLeave={(e) =>
-              (e.currentTarget.style.backgroundColor = "#567C8D")
-            }
-          >
-            Sign Up
-          </button>
-          </Link>
+            
+          <Link to={"/login"}>
           <button
             className="font-semibold px-6 py-3 rounded-lg shadow-lg transition border"
             style={{
@@ -66,8 +49,9 @@ export default function IntroPage() {
               e.currentTarget.style.borderColor = "#C8D9E6";
             }}
           >
-            Log In
+            Join now
           </button>
+          </Link>
         </div>
       </div>
     </div>

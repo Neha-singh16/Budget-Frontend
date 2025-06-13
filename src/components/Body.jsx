@@ -1,33 +1,7 @@
 
 
-// import React from 'react';
-// import { Outlet } from "react-router-dom";
-// import Navbar from '../components/Navbar';
-// import Footer from "../components/Footer";
-// import Sidebar from '../components/Sidebar';
 
-// const Body = () => {
-//   return (
-//     <>
-//       <div className="flex min-h-screen">
-//         {/* Sidebar */}
-//         <Sidebar />
-
-//         {/* Main content area: navbar + page content + footer */}
-//         <div className="flex flex-col flex-grow">
-//           <Navbar />
-//           <main className="flex-grow overflow-auto p-4">
-//             <Outlet />
-//           </main>
-//           <Footer />
-//         </div>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default Body;
-
+// pages/Body.tsx
 import React from 'react';
 import { Outlet } from "react-router-dom";
 import Navbar from '../components/Navbar';
@@ -39,27 +13,26 @@ const Body = () => {
   const isMenuOpen = useSelector((state) => state.menu.isMenuOpen);
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-100">
-      {/* Navbar spans full width */}
+    <div className="min-h-screen flex flex-col bg-gray-100 overflow-hidden">
+      {/* Navbar */}
       <Navbar />
 
-      {/* Main content layout: Sidebar + Main content */}
       <div className="flex flex-grow overflow-hidden">
-        {/* Sidebar */}
+        {/* Sidebar wrapper: width toggles between 0 and 16rem */}
         <div
-          className={`transition-all duration-400 ease-in-out ${
-            isMenuOpen ? 'w-64' : 'w-0'
-          }`}
+          className={`flex flex-shrink-0
+            ${isMenuOpen ? 'w-64' : 'w-0'}
+            transition-all duration-300
+          `}
         >
           <Sidebar />
         </div>
 
-        {/* Page Content */}
-        <div className="flex flex-col flex-grow">
-          <main className="flex-grow overflow-auto transition-all duration-300">
+        {/* Main content: takes remaining space */}
+        <div className="flex-1 flex flex-col overflow-hidden">
+          <main className="flex-1 overflow-auto">
             <Outlet />
           </main>
-
           <Footer />
         </div>
       </div>
@@ -68,3 +41,4 @@ const Body = () => {
 };
 
 export default Body;
+

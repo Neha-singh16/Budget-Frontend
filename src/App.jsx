@@ -1,5 +1,5 @@
 import "./App.css";
-import Signup from "./components/SignUp";
+// import Login from "./components/Login";
 import Body from "./components/Body";
 import Dashboard from "./components/Dashboard";
 import IntroPage from "./components/Intro";
@@ -7,6 +7,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./utils/store";
 import Profile from "./components/Profile";
+import Budget from "./components/Budget";
+import ExpenseTracker from "./components/Expense";
+import ChangePasswordPage from "./components/ChangePassword";
+import AuthPage from "./components/Login";
 
 function App() {
   return (
@@ -15,14 +19,17 @@ function App() {
         <Routes>
           {/* First visit: Intro Page */}
           <Route path="/" element={<IntroPage />} />
-           {/* <Route path="/profile" element={<Profile />} /> */}
-             <Route path="signup" element={<Signup />} />
 
-          {/* Main app routes under /app */}
-          <Route path="/app" element={<Body />}>
-            <Route  path="dashboard"  index element={<Dashboard />} />
-          
+          <Route path="login" element={<AuthPage />} />
+
+           <Route path="/app" element={<Body />}>
+            <Route path="dashboard" index element={<Dashboard />} />
+
             <Route path="profile" element={<Profile />} />
+             <Route path="password" element={<ChangePasswordPage/>} />
+            <Route path="expense" element={<ExpenseTracker />} />
+            <Route path="budget" element={<Budget />} />
+
           </Route>
         </Routes>
       </BrowserRouter>
