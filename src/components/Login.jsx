@@ -42,8 +42,8 @@ export default function AuthPage() {
 
   // choose image based on mode
   const sideImageUrl = isLogin
-    ? 'https://videos.openai.com/vg-assets/assets%2Ftask_01jxms2rsteafa8fg8yeakz4xn%2F1749822935_img_1.webp?st=2025-06-13T12%3A24%3A30Z&se=2025-06-19T13%3A24%3A30Z&sks=b&skt=2025-06-13T12%3A24%3A30Z&ske=2025-06-19T13%3A24%3A30Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=8ebb0df1-a278-4e2e-9c20-f2d373479b3a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=HIFq2hxPEzBQb%2FLYancyYczOZQSIx9xCgMdEapmVhto%3D&az=oaivgprodscus'
-    : 'https://videos.openai.com/vg-assets/assets%2Ftask_01jxms2rsteafa8fg8yeakz4xn%2F1749822935_img_0.webp?st=2025-06-13T12%3A24%3A30Z&se=2025-06-19T13%3A24%3A30Z&sks=b&skt=2025-06-13T12%3A24%3A30Z&ske=2025-06-19T13%3A24%3A30Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=8ebb0df1-a278-4e2e-9c20-f2d373479b3a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=FiNftnWTuhUCwfNsf0fCn7We1t0jIK8ZrYUgIrZpaxU%3D&az=oaivgprodscus';
+    ? 'https://videos.openai.com/vg-assets/assets%2Ftask_01jxms2rsteafa8fg8yeakz4xn%2F1749822935_img_1.webp?st=2025-06-21T15%3A09%3A45Z&se=2025-06-27T16%3A09%3A45Z&sks=b&skt=2025-06-21T15%3A09%3A45Z&ske=2025-06-27T16%3A09%3A45Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=mWNfXXfNd8k7rSN%2FcSvLfehGSr9fWoSxMvFmoHEgwbs%3D&az=oaivgprodscus'
+    : 'https://videos.openai.com/vg-assets/assets%2Ftask_01jxms2rsteafa8fg8yeakz4xn%2F1749822935_img_0.webp?st=2025-06-21T15%3A09%3A45Z&se=2025-06-27T16%3A09%3A45Z&sks=b&skt=2025-06-21T15%3A09%3A45Z&ske=2025-06-27T16%3A09%3A45Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=OKgvGGAKYbzfu6Xay19kM4xfjMXTiMKhqaWwEBVpIXA%3D&az=oaivgprodscus';
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#F5EFEB] p-4">
@@ -100,6 +100,7 @@ export default function AuthPage() {
                 onChange={handleChange}
                 placeholder="Enter your password"
                 required
+                 autoComplete="current-password"
                 className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#567C8D]"
               />
               <button type="button" onClick={toggleShow} className="absolute top-10 right-3 text-gray-500">
