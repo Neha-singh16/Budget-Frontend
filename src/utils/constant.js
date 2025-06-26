@@ -1,1 +1,1 @@
-export const USER = "https://budget-backend-93y6.vercel.app/"
+export const USER = "https://budget-backend-93y6.vercel.app"
