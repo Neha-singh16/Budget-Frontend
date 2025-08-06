@@ -285,14 +285,14 @@ export default function Profile() {
 
   // Build the correct URL
   const avatarUrl = hasAvatar
-    ? `${USER}/user/${user._id}/avatar?ver=${avatarVer}`
+    ? `/api/user/${user._id}/avatar?ver=${avatarVer}`
     : defaultAvatar;
 
   // Fetch profile on mount
   useEffect(() => {
     (async () => {
       try {
-        const res = await fetch(`${USER}/profile/view`, { credentials: "include" });
+        const res = await fetch(`/api/profile/view`, { credentials: "include" });
         if (!res.ok) throw new Error("Failed to load profile");
         const data = await res.json();
         dispatch(setUser(data));
@@ -325,7 +325,7 @@ export default function Profile() {
   };
   const onDeleteAvatar = async () => {
     if (!window.confirm("Delete your profile photo?")) return;
-    await fetch(`${USER}/user/avatar`, {
+    await fetch(`/api/user/avatar`, {
       method: "DELETE", credentials: "include"
     });
     setHasAvatar(false);
@@ -339,7 +339,7 @@ export default function Profile() {
       if (avatarFile) {
         const fd = new FormData();
         fd.append("avatar", avatarFile);
-        const r = await fetch(`${USER}/user/avatar`, {
+        const r = await fetch(`/api/user/avatar`, {
           method: "PATCH",
           credentials: "include",
           body: fd
@@ -347,7 +347,7 @@ export default function Profile() {
         if (!r.ok) throw new Error("Avatar upload failed");
 
         // immediately re-fetch profile to get the real hasAvatar flag
-        const vp = await fetch(`${USER}/profile/view`, { credentials: "include" });
+        const vp = await fetch(`/api/profile/view`, { credentials: "include" });
         const vd = await vp.json();
         setHasAvatar(Boolean(vd.hasAvatar));
         setAvatarVer(Date.now());
@@ -356,7 +356,7 @@ export default function Profile() {
       }
 
       // 2) Update textual fields
-      const r2 = await fetch(`${USER}/profile/update`, {
+      const r2 = await fetch(`/api/profile/update`, {
         method: "PATCH",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
@@ -365,7 +365,7 @@ export default function Profile() {
       if (!r2.ok) throw new Error("Profile update failed");
 
       // 3) Final refetch and state sync
-      const r3  = await fetch(`${USER}/profile/view`, { credentials: "include" });
+      const r3  = await fetch(`/api/profile/view`, { credentials: "include" });
       const data = await r3.json();
       dispatch(setUser(data));
       setForm({

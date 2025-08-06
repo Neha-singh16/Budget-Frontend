@@ -28,13 +28,13 @@ export default function ExpenseTracker() {
     (async () => {
       try {
         const [cats, buds, exps] = await Promise.all([
-          fetch(`${USER}/category`, { credentials: "include" }).then((r) =>
+          fetch(`/api/category`, { credentials: "include" }).then((r) =>
             r.json()
           ),
-          fetch(`${USER}/user/budget`, { credentials: "include" }).then((r) =>
+          fetch(`/api/user/budget`, { credentials: "include" }).then((r) =>
             r.json()
           ),
-          fetch(`${USER}/user/expense`, { credentials: "include" }).then((r) =>
+          fetch(`/api/user/expense`, { credentials: "include" }).then((r) =>
             r.json()
           ),
         ]);
@@ -72,7 +72,7 @@ export default function ExpenseTracker() {
     e.preventDefault();
     if (!canAfford()) return;
 
-    const res = await fetch(`${USER}/user/expense`, {
+    const res = await fetch(`/api/user/expense`, {
       method: "POST",
       credentials: "include",
       headers: { "Content-Type": "application/json" },
@@ -99,7 +99,7 @@ export default function ExpenseTracker() {
 
   const handleDelete = async (id) => {
     if (!window.confirm("Delete this expense?")) return;
-    const res = await fetch(`${USER}/user/expense/${id}`, {
+    const res = await fetch(`/api/user/expense/${id}`, {
       method: "DELETE",
       credentials: "include",
     });

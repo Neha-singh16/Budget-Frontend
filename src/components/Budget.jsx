@@ -22,8 +22,8 @@ export default function Budget() {
     (async () => {
       try {
         const [cats, buds] = await Promise.all([
-          fetch(`${USER}/category`, { credentials: 'include' }).then(r => r.json()),
-          fetch(`${USER}/user/budget`, { credentials: 'include' }).then(r => r.json()),
+          fetch(`/api/category`, { credentials: 'include' }).then(r => r.json()),
+          fetch(`/api/user/budget`, { credentials: 'include' }).then(r => r.json()),
         ]);
         dispatch(setCategories(cats));
         dispatch(setBudgets(buds));
@@ -39,7 +39,7 @@ export default function Budget() {
   const handleAddBudget = async e => {
     e.preventDefault();
     try {
-      const res = await fetch(`${USER}/user/budget`, {
+      const res = await fetch(`/api/user/budget`, {
         method: 'POST', credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ categoryId: newBudget.categoryId, limit: Number(newBudget.limit), period: newBudget.period }),
@@ -58,7 +58,7 @@ export default function Budget() {
 
   const handleDelete = async id => {
     if (!window.confirm('Delete this budget?')) return;
-    const res = await fetch(`${USER}/user/budget/${id}`, { method: 'DELETE', credentials: 'include' });
+    const res = await fetch(`/api/user/budget/${id}`, { method: 'DELETE', credentials: 'include' });
     if (res.ok) dispatch(deleteBudget(id));
   };
 

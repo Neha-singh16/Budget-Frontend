@@ -15,7 +15,7 @@ export default function WalletPage() {
   useEffect(() => {
     (async () => {
       try {
-        const res = await fetch(`${USER}/user/income`, { credentials: 'include' });
+        const res = await fetch(`/api/user/income`, { credentials: 'include' });
         if (!res.ok) throw new Error('Failed to load incomes');
         const data = await res.json();
         dispatch(setIncomes(data));
@@ -33,7 +33,7 @@ export default function WalletPage() {
     e.preventDefault();
     setError('');
     try {
-      const res = await fetch(`${USER}/user/income`, {
+      const res = await fetch(`/api/user/income`, {
         method: 'POST', credentials: 'include', headers: {'Content-Type':'application/json'},
         body: JSON.stringify({ amount: Number(form.amount), source: form.source })
       });
@@ -50,7 +50,7 @@ export default function WalletPage() {
   const handleDelete = async id => {
     if (!window.confirm('Delete this income?')) return;
     try {
-      const res = await fetch(`${USER}/user/income/${id}`, { method: 'DELETE', credentials: 'include' });
+      const res = await fetch(`/api/user/income/${id}`, { method: 'DELETE', credentials: 'include' });
       if (!res.ok) throw new Error('Delete failed');
       dispatch(removeIncome(id));
     } catch (e) {

@@ -39,10 +39,10 @@ export default function Dashboard() {
     (async () => {
       try {
         const [buds, exps, cats, incs] = await Promise.all([
-          fetch(`${USER}/user/budget`,  { credentials: 'include' }).then(r => r.json()),
-          fetch(`${USER}/user/expense`, { credentials: 'include' }).then(r => r.json()),
-          fetch(`${USER}/category`,     { credentials: 'include' }).then(r => r.json()),
-          fetch(`${USER}/user/income`,  { credentials: 'include' }).then(r => r.json()),
+          fetch(`/api/user/budget`,  { credentials: 'include' }).then(r => r.json()),
+          fetch(`/api/user/expense`, { credentials: 'include' }).then(r => r.json()),
+          fetch(`/api/category`,     { credentials: 'include' }).then(r => r.json()),
+          fetch(`/api/user/income`,  { credentials: 'include' }).then(r => r.json()),
         ]);
         dispatch(setBudgets(buds));
         dispatch(setExpenses(exps));

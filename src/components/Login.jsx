@@ -27,12 +27,12 @@ export default function AuthPage() {
       setError('Passwords do not match');
       return;
     }
-    const endpoint = isLogin ? '/login' : '/signup';
+    const endpoint = isLogin ? '/api/auth/login' : '/api/auth/signup';
     const payload = isLogin
       ? { email: form.email, password: form.password }
       : { firstName: form.firstName, lastName: form.lastName, email: form.email, password: form.password };
     try {
-      const res = await axios.post(USER + endpoint, payload, { withCredentials: true });
+      const res = await axios.post(endpoint, payload, { withCredentials: true });
       dispatch(setUser(res.data));
       navigate('/app/dashboard');
     } catch (err) {
@@ -64,6 +64,7 @@ export default function AuthPage() {
                     onChange={handleChange}
                     placeholder="First"
                     required
+                    
                     className="w-1/2 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#567C8D]"
                   />
                   <input
@@ -87,6 +88,7 @@ export default function AuthPage() {
                 onChange={handleChange}
                 placeholder="Enter your email"
                 required
+                  autoComplete={isLogin ? "username" : "email"}
                 className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#567C8D]"
               />
             </div>
@@ -100,7 +102,7 @@ export default function AuthPage() {
                 onChange={handleChange}
                 placeholder="Enter your password"
                 required
-                 autoComplete="current-password"
+                   autoComplete={isLogin ? "current-password" : "new-password"}
                 className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#567C8D]"
               />
               <button type="button" onClick={toggleShow} className="absolute top-10 right-3 text-gray-500">

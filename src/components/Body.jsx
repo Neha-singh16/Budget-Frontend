@@ -18,7 +18,7 @@ const Body = () => {
    useEffect(() => {
     (async () => {
       try {
-        const res = await fetch(`${USER}/profile/view`, {
+        const res = await fetch(`/profile/view`, {
           credentials: 'include',
         });
         if (res.ok) {

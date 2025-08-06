@@ -27,14 +27,14 @@ export default function Navbar() {
   }, [user]);
 
   const avatarUrl = user
-    ? `${USER}/user/${user._id}/avatar?ver=${avatarVersion}` // 👈 cache busting
+    ? `/api/user/${user._id}/avatar?ver=${avatarVersion}` // 👈 cache busting
     : "https://i.pravatar.cc/40";
 
   const onHamburgerClick = () => dispatch(toggleMenu());
 
   const handleLogout = async () => {
     try {
-      await axios.post(USER + "/logout", {}, { withCredentials: true });
+      await axios.post("/api/logout", {}, { withCredentials: true });
       dispatch(removeUser());
       navigate("/login");
     } catch (err) {
